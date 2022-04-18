@@ -5,18 +5,18 @@ LICENSE = "GPL-2.0-only"
 
 DEPENDS = "dbus glib-2.0 libnl"
 
-SRC_URI = "${KERNELORG_MIRROR}/linux/network/nfc/${BP}.tar.xz \
+SRCREV = "949795024f7625420e93e288c56e194cb9a3e74a"
+SRCBRANCH = "master"
+SRC_URI = "git://git.kernel.org/pub/scm/network/nfc/neard.git;protocol=git;branch=${SRCBRANCH} \
            file://neard.in \
            file://Makefile.am-fix-parallel-issue.patch \
            file://Makefile.am-do-not-ship-version.h.patch \
            file://0001-Add-header-dependency-to-nciattach.o.patch \
           "
-SRC_URI[md5sum] = "5c691fb7872856dc0d909c298bc8cb41"
-SRC_URI[sha256sum] = "eae3b11c541a988ec11ca94b7deab01080cd5b58cfef3ced6ceac9b6e6e65b36"
-
 LIC_FILES_CHKSUM = "file://COPYING;md5=12f884d2ae1ff87c09e5b7ccc2c4ca7e \
  file://src/near.h;beginline=1;endline=20;md5=358e4deefef251a4761e1ffacc965d13 \
  "
+S = "${WORKDIR}/git"
 
 inherit autotools pkgconfig systemd update-rc.d
 
